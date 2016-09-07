@@ -106,10 +106,10 @@ void onCheatItemChanged(int id, int enable) {
 void freezeCheatValue() {
     u32 key,pointer;
 	if (cheatEnabled[0]) {
-		WRITEU8(0x08C83D94, 0xA);
+		WRITEU8(0x08c84274, 0xA);//0x08C83D94 for 31.6M;0x08c84274 for 92.7M;
 	}
 	if (cheatEnabled[1]) {
-		WRITEU16(0x08C6F975, 0x0101);
+		WRITEU16(0x08C6FE55, 0x0101);//0x08C6F975 for 31.6M;0x08C6FE55 for 92.7M;
 	}
 	if (cheatEnabled[2]) {//TODO: need to be a function
         key = getKey();
