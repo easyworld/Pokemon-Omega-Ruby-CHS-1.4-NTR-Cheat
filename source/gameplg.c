@@ -113,7 +113,7 @@ void freezeCheatValue() {
 	}
 	if (cheatEnabled[2]) {//TODO: need to be a function
         key = getKey();
-        if (key == BUTTON_SE & BUTTON_UP) {
+        if (key == BUTTON_SE & BUTTON_DU) {
             // toggle cheats when SELECT button pressed
             cheatEnabled[2] = 1;
             // wait until key is up
