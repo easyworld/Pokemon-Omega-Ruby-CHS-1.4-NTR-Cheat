@@ -104,12 +104,12 @@ void onCheatItemChanged(int id, int enable) {
 
 // freeze the value
 void freezeCheatValue() {
-    u32 key;
+    u32 key,pointer;
 	if (cheatEnabled[0]) {
-		WRITEU8(0x08c84274, 0xA);
+		WRITEU8(0x08C83D94, 0xA);
 	}
 	if (cheatEnabled[1]) {
-		WRITEU16(0x08C6FE55, 0x0101);
+		WRITEU16(0x08C6F975, 0x0101);
 	}
 	if (cheatEnabled[2]) {//TODO: need to be a function
         key = getKey();
@@ -119,9 +119,12 @@ void freezeCheatValue() {
             // wait until key is up
             waitKeyUp();
         }
-        if (cheatEnabled) {
-            WRITEU8(*(vu32*)(0x81FB9F0)+0xB2,0x1);
-            cheatEnabled[2] = 0;
+        if (cheatEnabled[2]) {
+			pointer = *(vu32*)(0x81FB510);
+			if(pointer != 0x5D48C0){//magic number
+				WRITEU8(pointer+0xB2,0x1);
+				cheatEnabled[2] = 0;
+			}
         }
     }	
 	// TODO: handle your own cheat items
