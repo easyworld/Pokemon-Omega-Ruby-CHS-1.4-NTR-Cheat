@@ -34,7 +34,7 @@ Linker script and memory map
                 0x00100190                plgGetIoBase
                 0x00100198                copyRemoteMemory
  *(.text*)
- .text          0x001001b0      0x3b8 gameplg.o
+ .text          0x001001b0      0x3b0 gameplg.o
                 0x001001b0                getKey
                 0x001001d0                waitKeyUp
                 0x00100200                initMenu
@@ -45,36 +45,37 @@ Linker script and memory map
                 0x0010033c                addCheatMenuEntry
                 0x00100368                onCheatItemChanged
                 0x0010037c                freezeCheatValue
-                0x00100410                updateCheatEnableDisplay
-                0x00100444                scanCheatMenu
-                0x00100480                initCheatMenu
-                0x001004b4                gamePluginEntry
- .text          0x00100568      0x144 lib\AC.o
-                0x00100568                ACU_cmd1
-                0x001005b8                ACU_cmd26
-                0x00100618                ACU_GetWifiStatus
-                0x00100650                ACU_WaitInternetConnection
- .text          0x001006ac       0x30 lib\entry.o
-                0x001006ac                c_entry
-                0x001006d8                IRQHandler
- .text          0x001006dc      0x50c lib\FS.o
-                0x001006dc                FSUSER_Initialize
-                0x00100710                FSUSER_OpenFile
-                0x001007b0                FSUSER_OpenFileDirectly
-                0x00100870                FSUSER_OpenArchive
-                0x001008f4                FSUSER_OpenDirectory
-                0x00100980                FSUSER_CloseArchive
-                0x001009d0                FSFILE_Close
-                0x00100a00                FSFILE_Read
-                0x00100a68                FSFILE_Write
-                0x00100ad8                FSFILE_GetSize
-                0x00100b1c                FSFILE_SetSize
-                0x00100b54                FSDIR_Read
-                0x00100bb8                FSDIR_Close
- .text          0x00100be8       0x28 lib\main.o
-                0x00100be8                threadStart
- .text.startup  0x00100c10       0x80 lib\main.o
-                0x00100c10                main
+                0x0010040c                updateCheatEnableDisplay
+                0x00100440                scanCheatMenu
+                0x0010047c                initCheatMenu
+                0x001004b0                gamePluginEntry
+ .text          0x00100560      0x144 lib\AC.o
+                0x00100560                ACU_cmd1
+                0x001005b0                ACU_cmd26
+                0x00100610                ACU_GetWifiStatus
+                0x00100648                ACU_WaitInternetConnection
+ .text          0x001006a4       0x30 lib\entry.o
+                0x001006a4                c_entry
+                0x001006d0                IRQHandler
+ .text          0x001006d4      0x50c lib\FS.o
+                0x001006d4                FSUSER_Initialize
+                0x00100708                FSUSER_OpenFile
+                0x001007a8                FSUSER_OpenFileDirectly
+                0x00100868                FSUSER_OpenArchive
+                0x001008ec                FSUSER_OpenDirectory
+                0x00100978                FSUSER_CloseArchive
+                0x001009c8                FSFILE_Close
+                0x001009f8                FSFILE_Read
+                0x00100a60                FSFILE_Write
+                0x00100ad0                FSFILE_GetSize
+                0x00100b14                FSFILE_SetSize
+                0x00100b4c                FSDIR_Read
+                0x00100bb0                FSDIR_Close
+ .text          0x00100be0       0x28 lib\main.o
+                0x00100be0                threadStart
+ .text.startup  0x00100c08       0x80 lib\main.o
+                0x00100c08                main
+ *fill*         0x00100c88        0x8 
  .text          0x00100c90       0x10 lib\misc.o
                 0x00100c90                sleep
  .text          0x00100ca0       0x3c lib\OS.o
@@ -441,18 +442,18 @@ OUTPUT(a.out elf32-littlearm)
  .comment       0x00000044       0x23 ./lib\libc.a(lib_a-strcpy.o)
  .comment       0x00000044       0x23 ./lib\libc.a(lib_a-strlen.o)
 
-.debug_info     0x00000000     0x4518
- .debug_info    0x00000000      0x995 gameplg.o
- .debug_info    0x00000995      0x368 lib\AC.o
- .debug_info    0x00000cfd      0x11f lib\entry.o
- .debug_info    0x00000e1c      0x8a9 lib\FS.o
- .debug_info    0x000016c5      0x3ed lib\main.o
- .debug_info    0x00001ab2       0xc0 lib\OS.o
- .debug_info    0x00001b72      0x335 lib\pm.o
- .debug_info    0x00001ea7      0xc82 lib\rt.o
- .debug_info    0x00002b29      0x335 lib\sharedfunc.o
- .debug_info    0x00002e5e     0x13dc lib\SOC.o
- .debug_info    0x0000423a      0x2de lib\srv.o
+.debug_info     0x00000000     0x4516
+ .debug_info    0x00000000      0x993 gameplg.o
+ .debug_info    0x00000993      0x368 lib\AC.o
+ .debug_info    0x00000cfb      0x11f lib\entry.o
+ .debug_info    0x00000e1a      0x8a9 lib\FS.o
+ .debug_info    0x000016c3      0x3ed lib\main.o
+ .debug_info    0x00001ab0       0xc0 lib\OS.o
+ .debug_info    0x00001b70      0x335 lib\pm.o
+ .debug_info    0x00001ea5      0xc82 lib\rt.o
+ .debug_info    0x00002b27      0x335 lib\sharedfunc.o
+ .debug_info    0x00002e5c     0x13dc lib\SOC.o
+ .debug_info    0x00004238      0x2de lib\srv.o
 
 .debug_abbrev   0x00000000     0x11f0
  .debug_abbrev  0x00000000      0x310 gameplg.o
@@ -467,17 +468,17 @@ OUTPUT(a.out elf32-littlearm)
  .debug_abbrev  0x00000d7d      0x304 lib\SOC.o
  .debug_abbrev  0x00001081      0x16f lib\srv.o
 
-.debug_loc      0x00000000     0x29fb
- .debug_loc     0x00000000      0x14b gameplg.o
- .debug_loc     0x0000014b      0x1cc lib\AC.o
- .debug_loc     0x00000317       0x34 lib\entry.o
- .debug_loc     0x0000034b      0x7db lib\FS.o
- .debug_loc     0x00000b26       0x76 lib\main.o
- .debug_loc     0x00000b9c       0x5c lib\OS.o
- .debug_loc     0x00000bf8       0xfa lib\pm.o
- .debug_loc     0x00000cf2      0x6b8 lib\rt.o
- .debug_loc     0x000013aa     0x152b lib\SOC.o
- .debug_loc     0x000028d5      0x126 lib\srv.o
+.debug_loc      0x00000000     0x29e8
+ .debug_loc     0x00000000      0x138 gameplg.o
+ .debug_loc     0x00000138      0x1cc lib\AC.o
+ .debug_loc     0x00000304       0x34 lib\entry.o
+ .debug_loc     0x00000338      0x7db lib\FS.o
+ .debug_loc     0x00000b13       0x76 lib\main.o
+ .debug_loc     0x00000b89       0x5c lib\OS.o
+ .debug_loc     0x00000be5       0xfa lib\pm.o
+ .debug_loc     0x00000cdf      0x6b8 lib\rt.o
+ .debug_loc     0x00001397     0x152b lib\SOC.o
+ .debug_loc     0x000028c2      0x126 lib\srv.o
 
 .debug_aranges  0x00000000      0x168
  .debug_aranges
@@ -503,18 +504,18 @@ OUTPUT(a.out elf32-littlearm)
  .debug_aranges
                 0x00000148       0x20 lib\srv.o
 
-.debug_line     0x00000000     0x12cd
- .debug_line    0x00000000      0x1a7 gameplg.o
- .debug_line    0x000001a7      0x12e lib\AC.o
- .debug_line    0x000002d5       0xe1 lib\entry.o
- .debug_line    0x000003b6      0x1d0 lib\FS.o
- .debug_line    0x00000586      0x155 lib\main.o
- .debug_line    0x000006db       0xed lib\OS.o
- .debug_line    0x000007c8      0x120 lib\pm.o
- .debug_line    0x000008e8      0x27f lib\rt.o
- .debug_line    0x00000b67      0x102 lib\sharedfunc.o
- .debug_line    0x00000c69      0x4ed lib\SOC.o
- .debug_line    0x00001156      0x177 lib\srv.o
+.debug_line     0x00000000     0x12cc
+ .debug_line    0x00000000      0x1a6 gameplg.o
+ .debug_line    0x000001a6      0x12e lib\AC.o
+ .debug_line    0x000002d4       0xe1 lib\entry.o
+ .debug_line    0x000003b5      0x1d0 lib\FS.o
+ .debug_line    0x00000585      0x155 lib\main.o
+ .debug_line    0x000006da       0xed lib\OS.o
+ .debug_line    0x000007c7      0x120 lib\pm.o
+ .debug_line    0x000008e7      0x27f lib\rt.o
+ .debug_line    0x00000b66      0x102 lib\sharedfunc.o
+ .debug_line    0x00000c68      0x4ed lib\SOC.o
+ .debug_line    0x00001155      0x177 lib\srv.o
 
 .debug_str      0x00000000      0xd98
  .debug_str     0x00000000      0x4b7 gameplg.o

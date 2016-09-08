@@ -106,10 +106,10 @@ void onCheatItemChanged(int id, int enable) {
 void freezeCheatValue() {
     u32 key,pointer;
 	if (cheatEnabled[0]) {
-		WRITEU8(0x08c84274, 0xA);//0x08C83D94 for 31.6M;0x08c84274 for 92.7M;
+		WRITEU8(0x08c84374, 0xA);//0x08C83D94 for 31.6M;0x08c84274 for 92.7M;0x08c84374 for 95.5MB
 	}
 	if (cheatEnabled[1]) {
-		WRITEU16(0x08C6FE55, 0x0101);//0x08C6F975 for 31.6M;0x08C6FE55 for 92.7M;
+		WRITEU16(0x08C6FF55, 0x0101);//0x08C6F975 for 31.6M;0x08C6FE55 for 92.7M;0x08C6FF55 for 95.5MB
 	}
 	if (cheatEnabled[2]) {//TODO: need to be a function
         key = getKey();
@@ -121,9 +121,8 @@ void freezeCheatValue() {
         }
         if (cheatEnabled[2]) {
 			pointer = *(vu32*)(0x81FB510);
-			if(pointer != 0x5D48C0){//magic number
-				WRITEU8(pointer+0xB2,0x1);
-				cheatEnabled[2] = 0;
+			if(pointer != 0x5D48C0 && 0x8000000 < pointer && pointer < 0x8DEFFFF){//magic number
+				WRITEU8(pointer + 0xB2,0x1);
 			}
         }
     }	
