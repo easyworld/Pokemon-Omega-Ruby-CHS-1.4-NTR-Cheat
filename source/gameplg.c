@@ -82,10 +82,11 @@ int scanMenu() {
 	return -1;
 }
 
-// detect language (0: english)
+// detect language (0: english, 1: chinese)
 int detectLanguage() {
-	// unimplemented
-	return 0;
+	if(plgGetIoBase(6) == 2052)
+		return 1; //CN
+	return 0; //EN
 }
 
 // add one cheat menu entry
@@ -99,7 +100,6 @@ void addCheatMenuEntry(u8* str) {
 void onCheatItemChanged(int id, int enable) {
 	// TODO: handle on cheat item is select or unselected
 	cheatEnabled[(u8)(id)] = enable;
-
 }
 
 // freeze the value
@@ -145,13 +145,19 @@ void scanCheatMenu() {
 }
 
 // init 
-void initCheatMenu() {
+void initENCheatMenu() {
 	initMenu();
 	addCheatMenuEntry("O-Power Always Full");
-	addCheatMenuEntry("Quick Egg Hatching");
+	addCheatMenuEntry("Quick hatching");
 	addCheatMenuEntry("100% Catch rate");
-	// TODO: Add your own menu entries
-	
+	updateMenu();
+}
+
+void initCNCheatMenu() {
+	initMenu();
+	addCheatMenuEntry("O-Power不减");
+	addCheatMenuEntry("快速孵蛋");
+	addCheatMenuEntry("100%抓捕");
 	updateMenu();
 }
 
@@ -171,7 +177,12 @@ void gamePluginEntry() {
 	if (isNewNtr) {
 		IoBasePad = plgGetIoBase(IO_BASE_PAD);
 	}
-	initCheatMenu();
+	if (1 == detectLanguage()){
+		initCNCheatMenu();// cn
+	} else {
+		initENCheatMenu(); // en
+	}
+	
 	while (1) {
 		svc_sleepThread(100000000);
 		scanCheatMenu();
